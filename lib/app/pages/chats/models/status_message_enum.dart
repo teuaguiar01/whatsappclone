@@ -1,0 +1,1 @@
+enum StatusMessage { VISUALIZADO, ENTREGUE, NAO_ENTREGUE }
