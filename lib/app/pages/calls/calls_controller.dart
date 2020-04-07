@@ -1,14 +1,21 @@
 
 import 'package:app1/app/pages/calls/models/calls_model.dart';
 
-class CallsController {
 
+import 'package:mobx/mobx.dart';
+part 'calls_controller.g.dart';
+
+class CallsController = _CallsControllerBase with _$CallsController;
+
+abstract class _CallsControllerBase with Store {
+  @observable
   List<CallsModel> callsList;
 
-  CallsController() {
+  _CallsControllerBase() {
     getMessages();
   }
 
+  @action
   void getMessages() {
     callsList = [
     CallsModel(
@@ -55,5 +62,5 @@ class CallsController {
     ),
   ];
   callsList.sort((a, b) => b.time.compareTo(a.time));
-  }
+  } 
 }

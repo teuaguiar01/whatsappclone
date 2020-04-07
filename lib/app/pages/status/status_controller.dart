@@ -1,14 +1,23 @@
 import 'package:app1/app/pages/status/status_model.dart';
 
-class StatusController {
+import 'package:mobx/mobx.dart';
+part 'status_controller.g.dart';
+
+class StatusController = _StatusControllerBase with _$StatusController;
+
+abstract class _StatusControllerBase with Store {
+
   final String myImage =
       'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+
+  @observable
   List<StatusModel> statusList;
 
-  StatusController() {
+  _StatusControllerBase() {
     getStatus();
   }
 
+  @action
   void getStatus() {
     statusList = [
       StatusModel(

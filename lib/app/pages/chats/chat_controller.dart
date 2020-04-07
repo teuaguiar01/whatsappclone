@@ -1,13 +1,20 @@
 import 'package:app1/app/pages/chats/conversations/conversation_controller.dart';
 import 'package:app1/app/pages/chats/models/chat_model.dart';
 
-class ChatController {
+import 'package:mobx/mobx.dart';
+part 'chat_controller.g.dart';
+
+class ChatController = _ChatControllerBase with _$ChatController;
+
+abstract class _ChatControllerBase with Store {
+  @observable
   List<ChatModel> chatList;
 
-  ChatController() {
+  _ChatControllerBase() {
     getMessages();
   }
 
+  @action
   void getMessages() {
     chatList = [
       ChatModel(
@@ -15,7 +22,7 @@ class ChatController {
         imageUrl:
             'https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
         time: 1585580646,
-        statusMessage: 0,
+        statusMessage: ConversationController().messagesList[0].statusMessage,
         mute: true,
         mensagensNaoLidas: 10,
         msgPreview: ConversationController().messagesList[0].message,
