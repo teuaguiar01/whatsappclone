@@ -63,7 +63,9 @@ class _ConversationWidgetState extends State<ConversationWidget> {
                       ),
                     ),
                   ),
-                  MyCustomForm(onSubmitMessage: _onSubmitMessage),
+                  MyCustomForm(
+                    onSubmitMessage: _onSubmitMessage,
+                  ),
                 ],
               ),
             ),
@@ -74,9 +76,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
   }
 
   _onSubmitMessage(String message) {
-    setState(() {
       controller.addMessage(message);
-    });
   }
 
   void _closeKeyboard(BuildContext context) {
@@ -98,7 +98,7 @@ class LeadingConversationButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: InkWell(
         borderRadius: BorderRadius.all(Radius.circular(100)),
-        onTap: (){
+        onTap: () {
           Navigator.pop(context);
         },
         child: Row(

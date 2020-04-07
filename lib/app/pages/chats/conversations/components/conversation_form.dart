@@ -12,16 +12,11 @@ class MyCustomForm extends StatefulWidget {
   _MyCustomFormState createState() => _MyCustomFormState();
 }
 
-// Define a corresponding State class.
-// This class holds the data related to the Form.
 class _MyCustomFormState extends State<MyCustomForm> {
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
   final myController = TextEditingController();
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     myController.dispose();
     super.dispose();
   }
@@ -111,7 +106,6 @@ class MessageTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: myController,
-      textInputAction: TextInputAction.done,
       onSubmitted: submitMessage,
       style: new TextStyle(fontSize: 19),
       keyboardType: TextInputType.multiline,

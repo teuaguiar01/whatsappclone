@@ -1,14 +1,23 @@
 import 'package:app1/app/pages/chats/conversations/models/conversation_model.dart';
+import 'package:mobx/mobx.dart';
 
-class ConversationController {
-  List<ConversationModel> messagesList;
+part 'conversation_controller.g.dart';
 
-  ConversationController() {
+class ConversationController = BaseConversationController
+    with _$ConversationController;
+
+abstract class BaseConversationController with Store {
+  @observable
+  ObservableList<ConversationModel> messagesList =
+      <ConversationModel>[].asObservable();
+
+  BaseConversationController() {
     getMessages();
   }
 
+  @action
   void getMessages() {
-    messagesList = [
+    messagesList.addAll([
       ConversationModel(
         message: 'live do gustavo lima',
         isMe: true,
@@ -39,22 +48,24 @@ class ConversationController {
         time: 1585578587,
         statusMessage: 0,
       ),
-    ];
+    ]);
     sortList();
   }
 
-  addMessage(String message){
+  @action
+  addMessage(String message) {
     ConversationModel temp = new ConversationModel(
       message: message,
       isMe: true,
       time: DateTime.now().millisecondsSinceEpoch,
       statusMessage: 2,
     );
-    messagesList.addAll({temp});
+    //messagesList.addAll({temp});
+    messagesList.add(temp);
     sortList();
   }
 
-  void sortList(){
+  void sortList() {
     messagesList.sort((a, b) => b.time.compareTo(a.time));
   }
 }
